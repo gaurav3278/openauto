@@ -1,15 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
+import map from '../public/map.png'
 import ope from '../public/rangerover.png'
+import arrow from '../public/ArrowBottom_icon.svg'
 import Image from 'next/image'
 import validator from 'validator'
 import PhoneScreen from './PhoneScreen'
 import HeroSection from './HeroSection'
 import Form from './Form'
 const LandingPage = () => {
+  const [about, setAbout] = useState(false)
   return (
-    <div className=" sm:w-full sm:flex sm:flex-col bg-red-500 ">
+    <div className=" sm:w-full sm:flex sm:flex-col  ">
       {/* navbar */}
-      <div className="nav flex justify-between p-8 sm:flex sm:justify-between ">
+      <div className="nav flex justify-between p-8 sm:flex sm:justify-between  ">
         <Image src="/oo.png" height={200} width={200} />
 
         <button className="border border-gray-400 bg-white px-3 rounded-md sm:hidden">
@@ -17,11 +20,11 @@ const LandingPage = () => {
         </button>
       </div>
       {/*  hero section*/}
-      <div className="flex justify-around p-10 mt-10 relative sm:flex sm:flex-col ">
-        <div className="flex  flex-col   w-2/5 sm:w-full">
-          <h1 className="text-7xl sm:text-4xl ">
-            Delivered to <br></br>
-            <span className="text-7xl font-bold sm:text-4xl">Your Door.</span>
+      <div className="flex justify-around p-10 sm:p-0  relative sm:flex-col sm:w-full ">
+        <div className="flex  flex-col sm:px-10  w-2/5 sm:w-full">
+          <h1 className="text-7xl sm:text-5xl ">
+            Delivered to <br />
+            <span className="text-7xl font-bold sm:text-5xl">Your Door.</span>
           </h1>
           <div>
             Contrary To Popular Belief, Lorem Ipsum Is Not Simply Random Text.
@@ -30,7 +33,7 @@ const LandingPage = () => {
           </div>
 
           {/* apps available on app store */}
-          <div className="flex flex-col mt-14">
+          <div className="flex flex-col mt-14 sm:hidden">
             <div className="flex items-center gap-1">
               <Image src="/apple.png" height={50} width={15} />
               <h3>Avalable on app store</h3>
@@ -43,35 +46,78 @@ const LandingPage = () => {
             </div>
           </div>
         </div>
-        <div className="h-2/3 ">
-          <Image src="/vancouverMap.png" height={400} width={700} />
+        {/* vancouver image */}
+
+        <div className="h-2/3 sm:pt-5 sm:w-full  ">
+          <Image src="/map.png" className="" height={400} width={700} />
         </div>
         {/* car image */}
-        <div className="flex justify-center  z-10 absolute top-2/3 ">
-          <img src="/rangerover.png" height={240} width={564} alt="" />
+        <div className="flex justify-center  z-10 absolute left-60 top-2/3 sm:-left-20 sm:right-52 sm:w-2/3">
+          <img src="/rangerover.png" className="" alt="" />
         </div>
-        {/* mobile section */}
-        <div className=" flex justify-center  z-10 absolute top-0 right-32 sm:hidden ">
-          <PhoneScreen />
+
+        <div className="sm:flex sm:flex-col sm:mt-14 sm:items-center hidden">
+          <div className="flex items-center gap-1">
+            <Image src="/apple.png" height={50} width={15} />
+            <h3>Avalable on app store</h3>
+            <Image src="/right-arrows.png" height={50} width={30} />
+          </div>
+          <div className="flex items-center gap-1">
+            <Image src="/playstore.png" height={50} width={15} />
+            <h3>Avalable on play store</h3>
+            <Image src="/right-arrows.png" height={50} width={30} />
+          </div>
         </div>
       </div>
-      {/* social icons */}
-      <div>
 
+      {/* social icons */}
+      <div className="flex justify-end items-end pr-10 gap-5 sm:hidden">
+        <div>
+          <Image src="/Facebook_icon.svg" height={20} width={10} />
+        </div>
+        <div>
+          <Image src="/twitter_icon.svg" height={20} width={10} />
+        </div>
+        <div>
+          <Image src="/Liknedin_icon.svg" height={20} width={10} />
+        </div>
+      </div>
+      <div
+        class="flex flex-col w-full items-center pt-5 pb-3 cursor-pointer"
+        onClick={() => {
+          setAbout(!about)
+        }}
+      >
+        <div>{!about ? 'Explore More' : 'Explore Less'}</div>
+        {about && (
+          <div>
+            <Image
+              src="/ArrowBottom_icon.svg"
+              width={10}
+              height={20}
+              className="rotate-180"
+            />
+          </div>
+        )}
+        {!about && (
+          <div className="">
+            <Image src="/ArrowBottom_icon.svg" width={10} height={20} />
+          </div>
+        )}
       </div>
       {/* middle section */}
-      <HeroSection/>
+      {about && <HeroSection />}
       {/* form section */}
-      <Form/>
+      {about && <Form />}
       {/* footer */}
-      <div className="flex justify-around items-center p-5 bg-gray-400/50">
-        <div>
-          <Image src="/OpenAuto_Logo.png" height={100} width={100} />
+      {about && (
+        <div className="flex justify-around items-center p-5 bg-gray-400/50 sm:flex-col  sm:gap-3">
+          <div>
+            <Image src="/OpenAuto_Logo.png" height={100} width={100} />
+          </div>
+          <div>Copyright @ 2022 OpenAuto All Rights Reserved</div>
         </div>
-        <div>
-          Copyright @ 2022 OpenAuto All Rights Reserved
-        </div>
-      </div>
+      )}
     </div>
   )
 }
