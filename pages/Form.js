@@ -8,12 +8,12 @@ const Form = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    const reg = new RegExp('^(+d{1,2}s)?(?d{3})?[s.-]d{3}[s.-]d{4}$')
-    console.log(reg.test(phone))
-    if (reg.test(email)) {
-      setErrorEmail(true)
-    } else {
+    const reg = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/;
+    // console.log(reg.test(phone))
+    if (phone.match(reg)) {
       setErrorEmail(false)
+    } else {
+      setErrorEmail(true)
     }
   }
   //name validator
@@ -28,27 +28,27 @@ const Form = () => {
   }
 
   return (
-    <div className="flex px-40 py-20 sm:px-5 sm:flex-col gap-10">
-      <div className="flex flex-col  w-1/2 sm:w-full">
-        <div className="text-5xl">
+    <div className="flex px-40 py-20 sm:gap-10 sm:px-5 sm:flex-col gap-40">
+      <div className="flex flex-col gap-y-2 w-1/2 sm:w-full">
+        <div className="text-5xl font-light">
           We're All
           <br />
-          <span className="text-5xl font-bold">Ears!</span>
+          <span className="text-5xl font-extrabold">Ears!</span>
         </div>
-        <div>
+        <div className="text-base font-inter">
           If you Trouble Managing Your Order, Or Want To Talk To One Of Your
           Expert Technicians We Are Here For You!
         </div>
       </div>
       {/* form */}
-      <form onSubmit={handleSubmit} className = 'w-full'>
-        <div className=" w-1/2 flex flex-col gap-10 sm:w-full">
-          <div className="border border-gray-600 rounded-md w-full relative">
-            <div className="absolute -top-3 bg-white ml-4">Name</div>
+      <form onSubmit={handleSubmit} className = 'w-full '>
+        <div className=" w-3/4 flex flex-col gap-10 sm:w-full">
+          <div className="border border-light-black p-2 rounded-md w-full relative">
+            <div className="absolute -top-4 bg-white-smoke ml-4 p-1   text-light-black">Name</div>
 
             <input
               type="text"
-              className="focus:outline-none py-1"
+              className="focus:outline-none py-2 bg-white-smoke"
               onChange={handleNameChange}
             />
           </div>
@@ -57,25 +57,27 @@ const Form = () => {
               name should be greater than 4 characters
             </span>
           )}
-          <div className="border border-gray-600 rounded-md w-full relative">
-            <div className="absolute -top-3 bg-white ml-4 ">Phone</div>
+          <div className="border border-light-border p-2 rounded-md w-full relative">
+            <div className="absolute -top-4 bg-white-smoke ml-4 p-1 text-light-black">Phone</div>
 
             <input
-              className="focus:outline-none py-1"
-              pattern="^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$"
+              className="focus:outline-none py-2 bg-white-smoke"
               type="tel"
               onChange={(e) => {
                 setPhone(e.target.value)
               }}
             />
           </div>
-          <div className="border border-gray-600 rounded-md w-full relative">
-            <div className="absolute -top-3 bg-white ml-4">Message</div>
+          {errorEmail && (
+            <span className="text-red-500">Please enter a valid phone number</span>
+          )}
+          <div className="border border-light-border rounded-md w-full relative p-3 h-28">
+            <div className="absolute -top-4 bg-white-smoke ml-4 p-1 text-light-black">Message</div>
 
-            <input type="text" className="focus:outline-none py-1 h-20" />
+            <textarea name="" className='resize-none focus:outline-none h-full  w-full py-2 bg-white-smoke' rows="5"></textarea>
           </div>
-          <div className="flex  border border-gray-400 rounded-md w-max px-5 py-3 sm:w-full sm:justify-center">
-            <button type="submit">Submit</button>
+          <div className="flex  border border-light-border rounded-md p-1 w-max sm:w-full sm:justify-center">
+            <button type="submit" className = 'w-full h-full px-20 py-2 text-light-black'>Submit</button>
           </div>
         </div>
       </form>
