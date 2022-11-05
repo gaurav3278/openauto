@@ -16,6 +16,7 @@ const Form = () => {
       setErrorEmail(true)
     }
   }
+  
   //name validator
   const handleNameChange = (e) => {
     setName(e.target.value)
