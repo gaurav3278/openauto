@@ -1,10 +1,7 @@
 import React, { useState } from 'react'
-import map from '../public/map.png'
-import ope from '../public/rangerover.png'
-import arrow from '../public/ArrowBottom_icon.svg'
+
 import Image from 'next/image'
-import validator from 'validator'
-import PhoneScreen from './PhoneScreen'
+
 import HeroSection from './HeroSection'
 import Form from './Form'
 const LandingPage = () => {
@@ -24,9 +21,11 @@ const LandingPage = () => {
         <div className="flex  flex-col sm:px-10  w-2/5 sm:w-full font-public">
           <h1 className="text-7xl sm:text-5xl ">
             Delivered to <br />
-            <span className="text-7xl font-extrabold sm:text-5xl">Your Door.</span>
+            <span className="text-7xl font-extrabold sm:text-5xl">
+              Your Door.
+            </span>
           </h1>
-          <div className='font-inter text-xs  py-2   sm:p-3 '>
+          <div className="font-inter text-xs  py-2   sm:p-3 ">
             Contrary To Popular Belief, Lorem Ipsum Is Not Simply Random Text.
             It Has Roots In A Piece Of Classical Latin Literature From 45 Bc,
             Making It Over 2000 Years Old.
